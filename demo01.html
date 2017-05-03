@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>d3.js学习</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        html,body{
+            -moz-user-select: none;
+            -khtml-user-select: none;
+            user-select: none;
+        }
+        .tac{
+            display: block;
+            margin:0 auto;
+        }
+    </style>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+</head>
+<body>
+    <canvas height="500" width="500"></canvas>
+    <p></p>
+</body>
+</html>
+<script>
+    var myBody = d3.select('canvas')
+        .attr('height','500')
+        .style({'cursor':'pointer','background-color':'#ddd'})
+        .classed('tac',true);
+    var myP = d3.select('p').text('肯定柚子').style({'text-align':'center','font-size':'24px','color':'red'})
+
+    var matrix = [
+        [11975,  5871, 8916, 2868],
+        [ 1951, 10048, 2060, 6171],
+        [ 8010, 16145, 8090, 8045],
+        [ 1013,   990,  940, 6907]
+    ];
+//    var tr = d3.select("body").append("table").selectAll("tr")//添加容器并且选中添加的元素
+//        .data(matrix)//给选中元素添加数据
+//        .enter().append("tr");//将数据添加到选中元素中
+//
+//    var td = tr.selectAll("td")//table标签中含有tr和td td存在tr中，选中标签td
+//        .data(function(d) { return d; })//逐行添加元素
+//        .enter().append("td")//为td标签添加数据
+//        .text(function(d) { return d; });//给td标签添加文本数据元素
+    var tr = d3.select('body').append('table').style('border','1px solid #000').selectAll('tr')
+        .data(matrix)
+        .enter().append('tr')
+    var td = tr.selectAll('td').data(function(d){return d;})
+        .enter().append('td').style({'text-align':'center','padding':'10px'})
+        .text(function(d){return d;})
+</script>
